@@ -34,4 +34,5 @@ class Parser:
         print("PROGRAM")
 
         while not self.checkToken(TokenType.EOF)
+            self.statenent()
 

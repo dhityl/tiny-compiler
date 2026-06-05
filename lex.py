@@ -175,10 +175,11 @@ class TokenType(Enum):
     print = 103
     input = 105
     let = 105
-    when = 106
+    when = 106 # can't use if cause python keyword
     then = 107
     endw = 108
-    dwhile = 109
+    dwhile = 109 # can't use while cause python keyword,
+                 # TODO: come up with better replacement for while
     repeat = 110
     endwhile = 111
 
