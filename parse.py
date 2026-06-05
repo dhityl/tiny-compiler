@@ -28,3 +28,10 @@ class Parser:
     def abort(self, message):
         sys.exit("Error: " + message)
 
+    #Production rules
+    # program ::= {statement}
+    def program(self):
+        print("PROGRAM")
+
+        while not self.checkToken(TokenType.EOF)
+
