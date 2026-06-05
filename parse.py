@@ -8,7 +8,7 @@ class Parser:
         self.curToken = None
         self.peekToken = None
         self.nextToken()
-        self.nextToken()
+        self.nextToken() # called twice to initialize current and peek
 
     def checkToken(self, kind):
         return kind == self.curToken.kind 
