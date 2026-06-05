@@ -31,8 +31,15 @@ class Parser:
     #Production rules
     # program ::= {statement}
     def program(self):
-        print("PROGRAM")
+        print("program")
 
-        while not self.checkToken(TokenType.EOF)
-            self.statenent()
+        while not self.checkToken(TokenType.eof)
+            self.statement()
+
+    def statement(self):
+        print("statement")
+        
+        while not self.checkToken(TokenType.eof)
+            if self.checkToken() in range(101,200):
+
 
