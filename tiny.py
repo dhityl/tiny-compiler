@@ -12,7 +12,7 @@ def main():
 
     # initliaze the lexer + parse
     lexer = Lexer(source)
-    parse = Parser(lexer)
+    parser = Parser(lexer)
 
     parser.program()
     print("Parsing completed.")

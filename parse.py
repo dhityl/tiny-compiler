@@ -28,18 +28,87 @@ class Parser:
     def abort(self, message):
         sys.exit("Error: " + message)
 
-    #Production rules
+    # Production rules (maps grammar.txt)
     # program ::= {statement}
     def program(self):
         print("program")
 
-        while not self.checkToken(TokenType.eof)
+        while not self.checkToken(TokenType.eof):
             self.statement()
 
+    # statement ::= [keywords}
     def statement(self):
-        print("statement")
-        
-        while not self.checkToken(TokenType.eof)
-            if self.checkToken() in range(101,200):
+        print("statement; ", end="")
 
+        if self.checkToken(TokenType.print):
+            print("print")
+            self.nextToken()
+
+            if self.checkToken(TokenType.string):
+                self.nextToken()
+            else:
+                self.expression()
+
+        elif self.checkToken(TokenType.when):
+            print("when")
+            self.nextToken()
+            self.comparison()
+
+            self.match(TokenType.then)
+            self.nl()
+
+            while not self.checkToken(TokenType.endwhen):
+                self.statement()
+
+            self.match(TokenType.endwhen)
+
+        elif self.checkToken(TokenType.loop):
+            print("loop")
+            self.nextToken()
+            self.expression()
+
+            self.match(TokenType.repeat)
+            self.nl()
+
+            while not self.checkToken(TokenType.endloop):
+                self.statement()
+
+            self.match(TokenType.endwhile)
+
+        elif self.checkToken(TokenType.label):
+            print("label")
+            self.nextToken()
+            self.match(TokenType.identifier)
+
+        elif self.checkToken(TokenType.goto):
+            print("goto")
+            self.nextToken()
+            self.match(TokenType.identifier)
+
+        elif self.checkToken(TokenType.let):
+            print("let")
+            self.nextToken()
+            self.match(TokenType.identifier)
+            self.match(TokenType.eq)
+            self.expression()
+
+        elif self.checkToken(TokenType.input):
+            print("input")
+            self.nextToken()
+            self.match(TokenType.identifier)
+
+        else: #error!
+            self.abort("Invalid statement at " + self.curToken.text + "(" + self.curToken.kind.name + ")")
+
+        self.nl()
+
+
+    # nl ::= '\n'+
+    def nl(self):
+        print("newline")
+
+        self.match(TokenType.newline)
+
+        while self.checkToken(TokenType.newline):
+            self.nextToken()
 

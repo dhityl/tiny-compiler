@@ -1,14 +1,14 @@
 program ::= {statement}
 statement ::= "print" (expression | string) nl
-    | "when" comparison "then" nl {statement} "ENDIF" nl
-    | "dwhile" comparison "repeat" nl {statement} "endwhile" nl
-    | "label" ident nl
-    | "goto" ident nl
-    | "let" ident "=" expression nl
-    | "input" ident nl
+    | "when" comparison "then" nl {statement} "endwhen" nl
+    | "loop" comparison "repeat" nl {statement} "endloop" nl
+    | "label" identifier nl
+    | "goto" identifier nl
+    | "let" identifier "=" expression nl
+    | "input" identifier nl
 comparison ::= expression (("==" | "!=" | ">" | ">=" | "<" | "<=") expression)+
 expression ::= term {( "-" | "+" ) term}
 term ::= unary {( "/" | "*" ) unary}
 unary ::= ["+" | "-"] primary
-primary ::= number | ident
+primary ::= number | identifier
 nl ::= '\n'+

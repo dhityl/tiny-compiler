@@ -177,7 +177,7 @@ class TokenType(Enum):
     let = 105
     when = 106 # can't use if cause python keyword
     then = 107
-    endw = 108
+    endwhen = 108
     loop = 109 
     repeat = 110
     endloop = 111
