@@ -105,6 +105,12 @@ class Parser:
 
         self.nl()
 
+    def comparison(self):
+        print("comparision")
+
+        self.expression()
+
+
 
     # nl ::= '\n'+
     def nl(self):
