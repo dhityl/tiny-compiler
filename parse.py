@@ -106,9 +106,20 @@ class Parser:
         self.nl()
 
     def comparison(self):
-        print("comparision")
+        print("comparison")
 
         self.expression()
+        if self.isComparisonOperator():
+            self.nextToken()
+            self.expression()
+
+        while self.isCoparisonOperator():
+            self.nextToken()
+            self.expression()
+
+    def isCoparisionOperator(self):
+        # return true if operator(token) lt, lteq, gt, gteq, eqeq, noteq
+        return self.checkToken(TokenType.lt) or self.checkToken(TokenType.lteq) or self.checkToken(TokenType.gt) or self.checkToken(TokenType.gteq) or self.checkToken(TokenType.gt) or self.checkToken(TokenType.eqeq) or self.checkToken(TokenType.noteq)
 
 
 
