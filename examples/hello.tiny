@@ -1,3 +1,1 @@
-label loop
-print "hello, world!"
-goto loop
+jump goto
