@@ -105,6 +105,7 @@ class Parser:
 
         self.nl()
 
+    # comparison ::= (("==" | "!=" | ">" | "<" | "<=" | ">=" ) expression)+
     def comparison(self):
         print("comparison")
 
@@ -118,10 +119,42 @@ class Parser:
             self.expression()
 
     def isCoparisionOperator(self):
-        # return true if operator(token) lt, lteq, gt, gteq, eqeq, noteq
+        # return true if operator lt, lteq, gt, gteq, eqeq, noteq
         return self.checkToken(TokenType.lt) or self.checkToken(TokenType.lteq) or self.checkToken(TokenType.gt) or self.checkToken(TokenType.gteq) or self.checkToken(TokenType.gt) or self.checkToken(TokenType.eqeq) or self.checkToken(TokenType.noteq)
 
+    # expression ::= term {( "-" | "+") term}
+    def expression(self):
+        print("expression")
 
+        self.term()
+        while self.checkToken(TokenType.plus) or self.checkToken(TokenType.minus):
+            self.nextToken()
+            self.term()
+
+    def term(self):
+        print("term")
+
+        self.unary()
+        while self.checkToken(TokenType.asterisk) or self.checktoken(TokenType.slash):
+            self.nextToken()
+            self.unary()
+
+    def unary(self):
+        print("unary")
+        
+        if self.checkToken(TokenType.plus) or self.checkToken(TokenType.minus):
+            self.nextToken()
+        self.primary()
+
+    def primary(self):
+        print("primary")
+
+        if self.checkToken(TokenType.number):
+            self.nextToken()
+        elif self.checkToken(TokenType.identifier):
+            self.nextToken()
+        else:
+            self.abort("Unexpected token at " + self.curToken.text)
 
     # nl ::= '\n'+
     def nl(self):
