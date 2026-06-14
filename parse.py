@@ -1,6 +1,7 @@
 import sys
 from lex import *
 
+
 class Parser:
     def __init__(self, lexer):
         self.lexer = lexer
@@ -8,10 +9,10 @@ class Parser:
         self.curToken = None
         self.peekToken = None
         self.nextToken()
-        self.nextToken() # called twice to initialize current and peek
+        self.nextToken()  # called twice to initialize current and peek
 
     def checkToken(self, kind):
-        return kind == self.curToken.kind 
+        return kind == self.curToken.kind
 
     def checkPeek(self, kind):
         return kind == self.peekToken.kind
@@ -100,8 +101,14 @@ class Parser:
             self.nextToken()
             self.match(TokenType.identifier)
 
-        else: #error!
-            self.abort("Invalid statement at " + self.curToken.text + "(" + self.curToken.kind.name + ")")
+        else:  # error!
+            self.abort(
+                "Invalid statement at "
+                + self.curToken.text
+                + "("
+                + self.curToken.kind.name
+                + ")"
+            )
 
         self.nl()
 
@@ -120,7 +127,15 @@ class Parser:
 
     def isCoparisionOperator(self):
         # return true if operator lt, lteq, gt, gteq, eqeq, noteq
-        return self.checkToken(TokenType.lt) or self.checkToken(TokenType.lteq) or self.checkToken(TokenType.gt) or self.checkToken(TokenType.gteq) or self.checkToken(TokenType.gt) or self.checkToken(TokenType.eqeq) or self.checkToken(TokenType.noteq)
+        return (
+            self.checkToken(TokenType.lt)
+            or self.checkToken(TokenType.lteq)
+            or self.checkToken(TokenType.gt)
+            or self.checkToken(TokenType.gteq)
+            or self.checkToken(TokenType.gt)
+            or self.checkToken(TokenType.eqeq)
+            or self.checkToken(TokenType.noteq)
+        )
 
     # expression ::= term {( "-" | "+") term}
     def expression(self):
@@ -135,13 +150,13 @@ class Parser:
         print("term")
 
         self.unary()
-        while self.checkToken(TokenType.asterisk) or self.checktoken(TokenType.slash):
+        while self.checkToken(TokenType.astersisk) or self.checkToken(TokenType.slash):
             self.nextToken()
             self.unary()
 
     def unary(self):
         print("unary")
-        
+
         if self.checkToken(TokenType.plus) or self.checkToken(TokenType.minus):
             self.nextToken()
         self.primary()
@@ -164,4 +179,3 @@ class Parser:
 
         while self.checkToken(TokenType.newline):
             self.nextToken()
-
