@@ -127,15 +127,13 @@ class Parser:
 
     def isCoparisionOperator(self):
         # return true if operator lt, lteq, gt, gteq, eqeq, noteq
-        return (
-            self.checkToken(TokenType.lt)
-            or self.checkToken(TokenType.lteq)
-            or self.checkToken(TokenType.gt)
-            or self.checkToken(TokenType.gteq)
-            or self.checkToken(TokenType.gt)
-            or self.checkToken(TokenType.eqeq)
-            or self.checkToken(TokenType.noteq)
-        )
+        return (self.checkToken(TokenType.lt)
+        or self.checkToken(TokenType.lteq)
+        or self.checkToken(TokenType.gt)
+        or self.checkToken(TokenType.gteq)
+        or self.checkToken(TokenType.gt)
+        or self.checkToken(TokenType.eqeq)
+        or self.checkToken(TokenType.noteq))
 
     # expression ::= term {( "-" | "+") term}
     def expression(self):
@@ -150,7 +148,7 @@ class Parser:
         print("term")
 
         self.unary()
-        while self.checkToken(TokenType.astersisk) or self.checkToken(TokenType.slash):
+        while self.checkToken(TokenType.asterisk) or self.checkToken(TokenType.slash):
             self.nextToken()
             self.unary()
 

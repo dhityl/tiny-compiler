@@ -51,8 +51,8 @@ class Lexer:
         elif self.curChar == "-":
             token = Token(self.curChar, TokenType.minus)
 
-        elif self.curChar == "*":
-            token = Token(self.curChar, TokenType.astersisk)
+        elif self.curChar == '*':
+            token = Token(self.curChar, TokenType.asterisk)
 
         elif self.curChar == "/":
             token = Token(self.curChar, TokenType.slash)
@@ -187,7 +187,7 @@ class TokenType(Enum):
     eq = 201
     plus = 202
     minus = 203
-    astersisk = 204
+    asterisk = 204
     slash = 205
     eqeq = 206
     noteq = 207
