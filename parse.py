@@ -121,11 +121,11 @@ class Parser:
             self.nextToken()
             self.expression()
 
-        while self.isCoparisonOperator():
+        while self.isComparisonOperator():
             self.nextToken()
             self.expression()
 
-    def isCoparisionOperator(self):
+    def isComparisonOperator(self):
         # return true if operator lt, lteq, gt, gteq, eqeq, noteq
         return (self.checkToken(TokenType.lt)
         or self.checkToken(TokenType.lteq)
@@ -160,7 +160,7 @@ class Parser:
         self.primary()
 
     def primary(self):
-        print("primary")
+        print("primary (" + self.curToken.text + ")")
 
         if self.checkToken(TokenType.number):
             self.nextToken()
