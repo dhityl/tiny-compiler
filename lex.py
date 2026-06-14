@@ -29,7 +29,7 @@ class Lexer:
 
     # skip whitespaces except newlines
     def skipWhitespace(self):
-        if self.curChar == " " or self.curChar == "\t" or self.curChar == "\r":
+        while self.curChar == " " or self.curChar == "\t" or self.curChar == "\r":
             self.nextChar()
 
     # Skip comments in the code

@@ -1,1 +1,4 @@
-let foo = bar * 3 + 2
+LET foo = bar * 3 + 2
+when foo > 0 THEN
+  PRINT "yes!"
+endwhen
