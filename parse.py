@@ -6,6 +6,10 @@ class Parser:
     def __init__(self, lexer):
         self.lexer = lexer
 
+        self.symbols = set()
+        self.labelsDeclared = set()
+        self.labelsGotoed = set()
+
         self.curToken = None
         self.peekToken = None
         self.nextToken()
@@ -37,8 +41,14 @@ class Parser:
         # skip newlines
         while self.checkToken(TokenType.newline):
             self.nextToken()
+
+        # parse all statements
         while not self.checkToken(TokenType.eof):
             self.statement()
+
+        for label in self.labelsGotoed:
+            if label not in self.labelsDeclared:
+                self.abort("Undeclared Label: "+ self.curToken.text)
 
     # statement ::= [keywords}
     def statement(self):
@@ -82,11 +92,18 @@ class Parser:
         elif self.checkToken(TokenType.label):
             print("label")
             self.nextToken()
+            
+            # make surethis label doesn't already exit
+            if self.curToken.text in self.labelsDeclared:
+                self.abort("Label already exists: " + self.curToken.text)
+            self.labelsDeclared.add(self.curToken.text)
+
             self.match(TokenType.identifier)
 
         elif self.checkToken(TokenType.goto):
             print("goto")
             self.nextToken()
+            self.labelsGotoed.add(self.curToken.text)
             self.match(TokenType.identifier)
 
         elif self.checkToken(TokenType.let):
