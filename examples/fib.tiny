@@ -1,0 +1,13 @@
+print "How many fibonacci numbers do you want?"
+input nums
+print ""
+
+let a = 0
+let b = 1
+loop nums > 0 repeat
+    print a
+    let c = a + b
+    let a = b
+    let b = c
+    let nums = nums - 1
+endloop
