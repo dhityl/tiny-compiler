@@ -79,7 +79,7 @@ class Parser:
         elif self.checkToken(TokenType.loop):
             print("loop")
             self.nextToken()
-            self.expression()
+            self.comparison()
 
             self.match(TokenType.repeat)
             self.nl()
@@ -87,7 +87,7 @@ class Parser:
             while not self.checkToken(TokenType.endloop):
                 self.statement()
 
-            self.match(TokenType.endwhile)
+            self.match(TokenType.endloop)
 
         elif self.checkToken(TokenType.label):
             print("label")
