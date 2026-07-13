@@ -48,7 +48,7 @@ class Parser:
 
         for label in self.labelsGotoed:
             if label not in self.labelsDeclared:
-                self.abort("Undeclared Label: "+ self.curToken.text)
+                self.abort("Undeclared Label: "+ label)
 
     # statement ::= [keywords}
     def statement(self):
@@ -109,6 +109,11 @@ class Parser:
         elif self.checkToken(TokenType.let):
             print("let")
             self.nextToken()
+
+            # if identifier doesnt already exist, declare it 
+            if self.curToken.text not in self.symbols:
+                self.symbols.add(self.curToken.text)
+
             self.match(TokenType.identifier)
             self.match(TokenType.eq)
             self.expression()
@@ -116,6 +121,11 @@ class Parser:
         elif self.checkToken(TokenType.input):
             print("input")
             self.nextToken()
+
+            # if variable doesnt already exist, declare it
+            if self.curToken.text not in self.symbols:
+                self.symbols.add(self.curToken.text)
+
             self.match(TokenType.identifier)
 
         else:  # error!
@@ -182,6 +192,9 @@ class Parser:
         if self.checkToken(TokenType.number):
             self.nextToken()
         elif self.checkToken(TokenType.identifier):
+            # ensure variable exists
+            if self.curToken.text not in self.symbols:
+                self.abort("Referencing variable without assignment: " + self.curToken.text)
             self.nextToken()
         else:
             self.abort("Unexpected token at " + self.curToken.text)
