@@ -6,7 +6,7 @@ statement ::= "print" (expression | string) nl
     | "goto" identifier nl
     | "let" identifier "=" expression nl
     | "input" identifier nl
-comparison ::= expression (("==" | "!=" | ">" | ">=" | "<" | "<=") expression)+
+comparison ::= expression (("==" | "!=" | ">" | ">=" | "<" | "<=") expression)
 expression ::= term {( "-" | "+" ) term}
 term ::= unary {( "/" | "*" ) unary}
 unary ::= ["+" | "-"] primary
