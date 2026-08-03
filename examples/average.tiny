@@ -1,0 +1,17 @@
+let a = 0
+loop a < 1 repeat
+    print "Enter number of scores: "
+    input a
+endloop
+
+let b = 0
+let s = 0
+print "Enter one value at a time: "
+loop b < a repeat
+    input c
+    let s = s + c
+    let b = b + 1
+endloop
+
+print "Average: "
+print s / a
