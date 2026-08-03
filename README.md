@@ -38,7 +38,7 @@ Using `aveerage.tiny` from `examples/`
 
 ## Manual
 
-Run the python file to get an C code in `out.c`
+Run the python file to get C code in `out.c`
 ```
 python tiny.py <path_to_file>
 ```
