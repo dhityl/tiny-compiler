@@ -1,5 +1,6 @@
 from lex import *
 from parse import *
+from emit import *
 import sys
 
 def main():
@@ -10,11 +11,13 @@ def main():
     with open(sys.argv[1], 'r') as inputFile:
         source = inputFile.read()
 
-    # initliaze the lexer + parse
+    # initliaze the lexer + parser + emitter
     lexer = Lexer(source)
-    parser = Parser(lexer)
+    emitter - Emitter("out.c")
+    parser = Parser(lexer, emitter)
 
     parser.program()
-    print("Parsing completed.")
+    emitter.writeFile()
+    print("Compilation completed.")
 
 main()
