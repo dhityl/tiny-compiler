@@ -28,14 +28,17 @@ On linux, run the output executable with
 ```
 
 
-Using example `average.tiny` from `examples/`
+Using `average.tiny` from `examples/`
 
 ```bash
 $ python tiny.py examples/average.tiny
+
 tiny compiler
 Compilation completed.
+
 $ gcc out.c
 $ ./a.out
+
 Enter number of scores: 
 4
 Enter one value at a time: 
