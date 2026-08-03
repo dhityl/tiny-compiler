@@ -30,10 +30,20 @@ On linux, run the output executable with
 
 Using example `average.tiny` from `examples/`
 
-```
-python tiny.py examples/average.tiny
-```
+```bash
+$ python tiny.py examples/average.tiny
+tiny compiler
+Compilation completed.
+$ gcc out.c
+$ ./a.out
+Enter number of scores: 
+4
+Enter one value at a time: 
+6
+7
+6
+7
+Average: 
+6.50
 
-```
-```
 ```
